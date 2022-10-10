@@ -20,7 +20,7 @@ public class ValidationUtilsTest {
     public void 레이싱카_이름_길이_5자리_넘어감_확인() {
         assertThatThrownBy(() -> ValidationUtils.validCarName("틀린케이스만들기"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차 이름 입력값이 잘못되었습니다.");
+                .hasMessage(ValidationUtils.RACING_CAR_NAME_ERROR_MESSAGE);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ValidationUtilsTest {
     public void 레이싱카_이름_길이_0자리_에러_확인() {
         assertThatThrownBy(() -> ValidationUtils.validCarName(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 자동차 이름 입력값이 잘못되었습니다.");
+                .hasMessage(ValidationUtils.RACING_CAR_NAME_ERROR_MESSAGE);
     }
 
     @Test
@@ -55,5 +55,21 @@ public class ValidationUtilsTest {
         testInput.add("영미");
         boolean result = ValidationUtils.validCarNames(testInput);
         assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("몇 번을 이동할 것인지 입력값 타당한지 확인")
+    public void inputGameCount(){
+        String testInput = "3";
+        assertThat(ValidationUtils.validateGameCount(testInput)).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("몇 번을 이동할 것인지 입력값 이상할 때 에러 확인")
+    public void inputGameCountError(){
+        String testInput = "가";
+        assertThatThrownBy(()-> ValidationUtils.validateGameCount(testInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ValidationUtils.GAME_COUNT_ERROR_MESSAGE);
     }
 }

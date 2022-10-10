@@ -28,13 +28,26 @@ public class RacingCarTest extends NsTest {
     }
 
     @Test
-    @DisplayName("한게임을 돌릴 시에 전진한다.")
-    public void playGameTest() {
+    @DisplayName("한게임을 돌릴 시에 4이상일 경우 전진한다.")
+    public void playGameForwardTest() {
         assertRandomNumberInRangeTest(
-                ()-> {testCar.playGame();
+                () -> {
+                    testCar.playGame();
                     assertThat(testCar.getForward()).isEqualTo(1);
                 },
-                5,1
+                5, 1
+        );
+    }
+
+    @Test
+    @DisplayName("한게임을 돌릴 시에 3이하일 경우 전진안한다.")
+    public void playGameStayTest() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    testCar.playGame();
+                    assertThat(testCar.getForward()).isEqualTo(0);
+                },
+                4, 1
         );
     }
 
@@ -43,4 +56,36 @@ public class RacingCarTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    @DisplayName("현재 자동차의 위치 표시.")
+    public void playGameDisplayTest() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    testCar.playGame();
+                    testCar.display();
+                    assertThat(output()).contains("test:-");
+                },
+                5, 1
+        );
+    }
+
+    @Test
+    @DisplayName("여러 대의 자동차 현재 상황 표시 테스트")
+    public void playGameDisplayTest2() {
+
+        RacingCar testCar2 = new RacingCar("김첨지");
+        assertRandomNumberInRangeTest(
+                () -> {
+                    testCar.playGame();
+                    testCar2.playGame();
+                    testCar2.playGame();
+                    testCar.display();
+                    testCar2.display();
+                    assertThat(output()).contains("test:-", "김첨지:--");
+                },
+                5, 10, 10
+        );
+    }
+
 }
