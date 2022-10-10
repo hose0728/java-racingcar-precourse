@@ -24,7 +24,7 @@ public class RacingCarsTest extends NsTest {
     @DisplayName("레이싱 카 전체 현재 상황 표시 테스트")
     public void RacingCarsDisplayTest() {
         testRacingCars.display();
-        assertThat(output()).contains("K5:", "EV6:", "TAYCAN:", "SPORTAGE:", "SANTAFE:");
+        assertThat(output()).contains("K5 :", "EV6 :", "TAYCAN :", "SPORTAGE :", "SANTAFE :");
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RacingCarsTest extends NsTest {
                 () -> {
                     testRacingCars.playGame();
                     testRacingCars.display();
-                    assertThat(output()).contains("K5:", "EV6:", "TAYCAN:", "SPORTAGE:-", "SANTAFE:-");
+                    assertThat(output()).contains("K5 :", "EV6 :", "TAYCAN :", "SPORTAGE : -", "SANTAFE : -");
                 },
                 3, 3, 3, 5, 5
         );
@@ -50,7 +50,7 @@ public class RacingCarsTest extends NsTest {
                     testRacingCars.display();
                     List<String> winnerNames = testRacingCars.calculateWinner();
                     testRacingCars.displayWinner(winnerNames);
-                    assertThat(output()).contains("K5:", "EV6:", "TAYCAN:", "SPORTAGE:-", "SANTAFE:-");
+                    assertThat(output()).contains("K5 :", "EV6 :", "TAYCAN :", "SPORTAGE : -", "SANTAFE : -");
                     assertThat(output()).contains(RacingCars.FINAL_WINNER + " SPORTAGE,SANTAFE");
                 },
                 3, 3, 3, 5, 5

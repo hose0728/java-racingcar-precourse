@@ -47,7 +47,7 @@ public class RacingCarTest extends NsTest {
                     testCar.playGame();
                     assertThat(testCar.getForward()).isEqualTo(0);
                 },
-                4, 1
+                3, 1
         );
     }
 
@@ -64,7 +64,7 @@ public class RacingCarTest extends NsTest {
                 () -> {
                     testCar.playGame();
                     testCar.display();
-                    assertThat(output()).contains("test:-");
+                    assertThat(output()).contains("test : -");
                 },
                 5, 1
         );
@@ -82,7 +82,7 @@ public class RacingCarTest extends NsTest {
                     testCar2.playGame();
                     testCar.display();
                     testCar2.display();
-                    assertThat(output()).contains("test:-", "김첨지:--");
+                    assertThat(output()).contains("test : -", "김첨지 : --");
                 },
                 5, 10, 10
         );

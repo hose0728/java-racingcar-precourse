@@ -6,6 +6,6 @@ public class RacingGameTest {
 
     @Test
     public void playGameTest(){
-        RacingGame.playGame();
+
     }
 }
