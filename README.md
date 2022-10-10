@@ -5,3 +5,10 @@
 
 ## 과제 제출 과정
 * [과제 제출 방법](https://github.com/next-step/nextstep-docs/tree/master/precourse)
+
+## :rocket: __기능 요구사항__ 
+
+__1. 문자열 자릿수 5자리인지 확인__
+
+
+
